@@ -135,6 +135,13 @@ export default function App() {
       <div className="workspace grid">
         <section className="lesson-column min-w-0" aria-live="polite">
           <LessonContent lesson={lesson} onLoad={loadExample} taskPassed={tasksCompleted.includes(current)} />
+          <div className="lesson-footer workspace-footer">
+            <button className="prev-button" disabled={current === 0} onClick={() => showLesson(current - 1)}>← Previous</button>
+            <button className={'complete-button' + (completed.includes(current) ? ' completed' : '')} onClick={() => dispatch(toggleComplete(current))}>
+              {completed.includes(current) ? 'Lesson completed' : 'Mark lesson complete'} <span className="complete-check">✓</span>
+            </button>
+            <button className="next-button" disabled={current === lessons.length - 1} onClick={() => showLesson(current + 1)}>Next lesson →</button>
+          </div>
         </section>
         <section className="practice-column min-w-0" aria-label="SQL practice workspace">
           <div className="practice-section-heading">
@@ -154,13 +161,6 @@ export default function App() {
             <ResultsPanel result={result} title={resultTitle} count={resultCount} />
           </aside>
         </section>
-        <div className="lesson-footer workspace-footer">
-          <button className="prev-button" disabled={current === 0} onClick={() => showLesson(current - 1)}>← Previous</button>
-          <button className={'complete-button' + (completed.includes(current) ? ' completed' : '')} onClick={() => dispatch(toggleComplete(current))}>
-            {completed.includes(current) ? 'Lesson completed' : 'Mark lesson complete'} <span className="complete-check">✓</span>
-          </button>
-          <button className="next-button" disabled={current === lessons.length - 1} onClick={() => showLesson(current + 1)}>Next lesson →</button>
-        </div>
       </div>
       <footer className="page-footer"><span>SQL FIELDNOTES · A learn-by-doing course</span><span>Local SQL practice · ✳</span></footer>
     </main>

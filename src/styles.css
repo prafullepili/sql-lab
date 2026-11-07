@@ -108,7 +108,7 @@
 .tutorial-layout .icon-button:hover { border-color:#8aa95c; color:#c3f26b; }
 .tutorial-layout .workspace { display:grid; grid-template-columns:minmax(320px,.88fr) minmax(0,1.12fr); align-items:start; gap:24px; width:min(100%,1800px); max-width:1800px; margin:0 auto; padding:18px clamp(20px,2.2vw,38px) 26px; }
 .tutorial-layout .lesson-column,.tutorial-layout .practice-column,.tutorial-layout .workspace-footer { min-width:0; max-width:none; }
-.tutorial-layout .lesson-column { grid-column:1; grid-row:1; position:sticky; top:78px; height:calc(100vh - 96px); height:calc(100dvh - 96px); overflow-y:auto; overflow-x:hidden; padding:0 14px 18px 0; scrollbar-width:thin; scrollbar-color:#435246 transparent; }
+.tutorial-layout .lesson-column { grid-column:1; grid-row:1; position:sticky; top:78px; display:flex; flex-direction:column; height:calc(100vh - 96px); height:calc(100dvh - 96px); overflow-y:auto; overflow-x:hidden; padding:0 14px 0 0; scrollbar-width:thin; scrollbar-color:#435246 transparent; }
 .tutorial-layout .lesson-column::-webkit-scrollbar,.tutorial-layout .practice-column::-webkit-scrollbar { width:8px; }
 .tutorial-layout .lesson-column::-webkit-scrollbar-track,.tutorial-layout .practice-column::-webkit-scrollbar-track { background:transparent; }
 .tutorial-layout .lesson-column::-webkit-scrollbar-thumb,.tutorial-layout .practice-column::-webkit-scrollbar-thumb { border:2px solid transparent; border-radius:8px; background:#435246; background-clip:padding-box; }
@@ -117,7 +117,11 @@
 .tutorial-layout .practice-section-heading .lesson-step-label { margin:0 0 3px; }
 .tutorial-layout .practice-section-heading h2 { margin:0; color:#edf3e8; font:700 20px/1.35 "Manrope",sans-serif; letter-spacing:-.3px; }
 .tutorial-layout .database-column,.tutorial-layout .editor-column,.tutorial-layout .results-column { flex:none; width:100%; margin:0; }
-.tutorial-layout .workspace-footer { grid-column:1/-1; grid-row:2; }
+.tutorial-layout .workspace-footer { position:sticky; bottom:0; z-index:6; flex:none; gap:8px; margin-top:auto; padding:12px 0 8px; border-top:1px solid #344438; background:linear-gradient(180deg,rgba(16,23,19,.92),#101713 30%); }
+.tutorial-layout .workspace-footer .prev-button,.tutorial-layout .workspace-footer .next-button { flex:1 1 0; min-width:0; white-space:nowrap; }
+.tutorial-layout .workspace-footer .prev-button { text-align:left; }
+.tutorial-layout .workspace-footer .next-button { text-align:right; }
+.tutorial-layout .workspace-footer .complete-button { flex:0 1 auto; min-width:0; min-height:40px; justify-content:center; white-space:nowrap; }
 .tutorial-layout .lesson-heading { padding:12px 0 21px; border:0; border-bottom:1px solid #2b3930; border-radius:0; background:transparent; }
 .tutorial-layout .lesson-kicker { color:#91a08e; }
 .tutorial-layout .lesson-index { color:#c3f26b; }
@@ -333,5 +337,5 @@
 @media(max-width:850px) {
   .tutorial-layout .workspace { grid-template-columns:minmax(0,1fr); }
   .tutorial-layout .lesson-column,.tutorial-layout .practice-column { position:static; grid-column:1; grid-row:auto; height:auto; min-height:0; overflow:visible; padding:0; }
-  .tutorial-layout .workspace-footer { grid-column:1; grid-row:auto; }
+  .tutorial-layout .workspace-footer { position:static; grid-column:1; grid-row:auto; margin-top:14px; padding-bottom:10px; background:#101713; }
 }
