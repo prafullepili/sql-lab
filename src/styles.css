@@ -401,3 +401,64 @@
   .tutorial-layout .workspace-footer .complete-button { flex-basis:120px; min-height:44px; padding:8px; font-size:10px; white-space:normal; line-height:1.2; }
   .tutorial-layout .join-query-anatomy { grid-template-columns:minmax(0,1fr); }
 }
+
+/* Let the practice pane use the screen edge without a wide dead gutter. */
+@media(min-width:851px) {
+  .tutorial-layout .workspace { width:100%; max-width:none; padding-right:10px; padding-left:clamp(18px,1.6vw,28px); }
+  .tutorial-layout .practice-column { padding-right:0; }
+}
+
+/* Larger reading and touch sizes for phone screens. */
+@media(max-width:560px) {
+  .tutorial-layout { font-size:16px; }
+  .tutorial-layout .eyebrow,.tutorial-layout .lesson-step-label { font-size:11px; letter-spacing:.8px; }
+  .tutorial-layout .lesson-heading h1 { font-size:28px; line-height:1.22; letter-spacing:-.5px; }
+  .tutorial-layout .lesson-intro { font-size:16px; line-height:1.75; }
+  .tutorial-layout .lesson-body { font-size:16px; line-height:1.75; }
+  .tutorial-layout .lesson-body h2 { font-size:21px; line-height:1.35; }
+  .tutorial-layout .lesson-body h3 { font-size:18px; }
+  .tutorial-layout .lesson-body p,.tutorial-layout .lesson-body li { font-size:15px; line-height:1.75; }
+  .tutorial-layout .lesson-points > li { padding-left:40px; font-size:15px; line-height:1.75; }
+  .tutorial-layout .lesson-points > li::before { width:30px; height:28px; font-size:11px; }
+  .tutorial-layout .practice-points .lesson-points > li { font-size:15px; }
+  .tutorial-layout .code-example pre,.tutorial-layout .function-item pre { font-size:13px; line-height:1.8; }
+  .tutorial-layout .code-caption { font-size:11px; }
+  .tutorial-layout .function-item > code { font-size:12px; }
+  .tutorial-layout .function-item > p { font-size:14px !important; line-height:1.7 !important; }
+  .tutorial-layout .example-load,.tutorial-layout .preview-table { min-height:46px; font-size:14px; }
+  .tutorial-layout .example-action-icon { flex-basis:28px; width:28px; height:28px; font-size:18px; }
+  .tutorial-layout .schema-helper { font-size:14px; }
+  .tutorial-layout .schema-chip { min-height:44px; padding:7px 11px; font-size:13px; }
+  .tutorial-layout .schema-detail-heading strong { font-size:16px; }
+  .tutorial-layout .schema-detail-heading span { font-size:13px; }
+  .tutorial-layout .schema-detail .column-item { font-size:14px; }
+  .tutorial-layout .schema-detail .column-type { font-size:12px; }
+  .tutorial-layout .schema-detail .preview-table { font-size:14px; }
+  .tutorial-layout .panel-heading h2,.tutorial-layout .results-heading h2 { font-size:18px; }
+  .tutorial-layout .connection,.tutorial-layout .editor-note { font-size:11px; }
+  .tutorial-layout .editor-toolbar { min-height:38px; font-size:11px; }
+  .tutorial-layout .shortcut { font-size:9px; }
+  .tutorial-layout .editor-wrap textarea { font-size:14px; line-height:1.8; }
+  .tutorial-layout .line-numbers { font-size:11px; line-height:1.8; }
+  .tutorial-layout .run-button { min-height:46px; font-size:13px; }
+  .tutorial-layout .results-content { max-height:360px; }
+  .tutorial-layout .empty-results p,.tutorial-layout .success-note { font-size:14px; }
+  .tutorial-layout .empty-results > span:last-child { font-size:12px; }
+  .tutorial-layout .result-table th { font-size:12px; }
+  .tutorial-layout .result-table td { font-size:13px; }
+  .tutorial-layout .error-box { font-size:12px; line-height:1.7; }
+  .tutorial-layout .workspace-footer .prev-button,.tutorial-layout .workspace-footer .next-button { font-size:12px; }
+  .tutorial-layout .workspace-footer .complete-button { min-height:46px; font-size:12px; }
+  .tutorial-layout .task-check-note { font-size:13px; line-height:1.65; }
+  .tutorial-layout .challenge-card > p,.tutorial-layout .challenge-card .hint-text { font-size:14px; line-height:1.7; }
+}
+
+@media(max-width:360px) {
+  .tutorial-layout .workspace { padding-right:11px; padding-left:11px; }
+  .tutorial-layout .topbar { grid-template-columns:minmax(0,1fr) 100px; padding-right:10px; padding-left:10px; }
+  .tutorial-layout .lesson-heading h1 { font-size:26px; }
+  .tutorial-layout .schema-chip { font-size:12px; }
+  .tutorial-layout .workspace-footer { gap:4px; }
+  .tutorial-layout .workspace-footer .prev-button,.tutorial-layout .workspace-footer .next-button { font-size:11px; }
+  .tutorial-layout .workspace-footer .complete-button { flex-basis:112px; padding:7px 5px; font-size:11px; }
+}
