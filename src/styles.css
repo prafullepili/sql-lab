@@ -462,3 +462,13 @@
   .tutorial-layout .workspace-footer .prev-button,.tutorial-layout .workspace-footer .next-button { font-size:11px; }
   .tutorial-layout .workspace-footer .complete-button { flex-basis:112px; padding:7px 5px; font-size:11px; }
 }
+
+.tutorial-layout .complete-label-compact { display:none; }
+@media(max-width:560px) {
+  .tutorial-layout .workspace-footer .complete-button { flex:0 0 auto; flex-basis:auto; min-height:38px; padding:6px 8px; font-size:11px; line-height:1; white-space:nowrap; }
+  .tutorial-layout .complete-label-full { display:none; }
+  .tutorial-layout .complete-label-compact { display:inline; }
+}
+@media(max-width:360px) {
+  .tutorial-layout .workspace-footer .complete-button { min-height:36px; padding:5px 6px; font-size:10px; }
+}
