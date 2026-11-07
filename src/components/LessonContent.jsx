@@ -39,7 +39,9 @@ function ExampleGroup({ group, onLoad }) {
     <div className="function-items-grid">
       {group.items.map((item) => <article className="function-item" key={item[0]}>
         <code>{item[0]}</code><p>{item[1]}</p><pre>{item[2]}</pre>
-        <button className="example-load" onClick={() => onLoad(item[3] || item[2])}>{item[3] && item[3] !== item[2] ? 'Try SQLite version ↓' : 'Try this query ↓'}</button>
+        <button className="example-load" onClick={() => onLoad(item[3] || item[2])}>
+          <span>{item[3] && item[3] !== item[2] ? 'Try SQLite version' : 'Try this query'}</span><span className="example-action-icon" aria-hidden="true">→</span>
+        </button>
       </article>)}
     </div>
   </div>;
@@ -76,7 +78,9 @@ export default function LessonContent({ lesson, onLoad, taskPassed = false }) {
       <div className="code-example">
         <div className="code-caption"><span>{lesson.caption}</span><span>SQL</span></div>
         <pre>{lesson.example}</pre>
-        <button className="example-load" onClick={() => onLoad(lesson.example)}>Try this query ↓</button>
+        <button className="example-load" onClick={() => onLoad(lesson.example)}>
+          <span>Try this query</span><span className="example-action-icon" aria-hidden="true">→</span>
+        </button>
       </div>
       <section className="practice-points" aria-label="In practice">
         <h3>03 · In practice</h3>
@@ -101,7 +105,9 @@ export default function LessonContent({ lesson, onLoad, taskPassed = false }) {
           <div className="function-guide-head"><span className="eyebrow">SAMPLE SOLUTION · {lesson.title.toUpperCase()}</span><span className="function-note">COMPARE AFTER TRYING</span></div>
           <article className="function-item">
             <code>{lesson.glanceLabel || lesson.title}</code><p>{lesson.glanceExplanation || lesson.intro}</p>
-            <pre>{lesson.query}</pre><button className="example-load" onClick={() => onLoad(lesson.query)}>Run sample solution ↓</button>
+            <pre>{lesson.query}</pre><button className="example-load" onClick={() => onLoad(lesson.query)}>
+              <span>Run sample solution</span><span className="example-action-icon" aria-hidden="true">→</span>
+            </button>
           </article>
         </section>
       </details>

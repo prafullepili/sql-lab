@@ -339,3 +339,65 @@
   .tutorial-layout .lesson-column,.tutorial-layout .practice-column { position:static; grid-column:1; grid-row:auto; height:auto; min-height:0; overflow:visible; padding:0; }
   .tutorial-layout .workspace-footer { position:static; grid-column:1; grid-row:auto; margin-top:14px; padding-bottom:10px; background:#101713; }
 }
+
+/* Keep query actions easy to spot and tap. */
+.tutorial-layout .example-load { display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; min-height:42px; padding:8px 11px; text-align:left; }
+.tutorial-layout .example-action-icon { display:grid; flex:0 0 25px; place-items:center; width:25px; height:25px; margin-left:auto; border:1px solid #40533d; border-radius:50%; color:#d7f59e; font-size:16px; line-height:1; }
+
+@media(max-width:850px) {
+  .tutorial-layout .topbar { display:flex; flex-wrap:wrap; gap:10px; padding:10px 18px; }
+  .tutorial-layout .breadcrumb { display:none; }
+  .tutorial-layout .lesson-picker-wrap { flex:1 1 220px; width:auto; min-width:0; }
+  .tutorial-layout .lesson-picker { width:100%; min-width:0; }
+  .tutorial-layout .top-progress { width:130px; }
+  .tutorial-layout .workspace { width:100%; padding:22px clamp(16px,4vw,28px); }
+  .tutorial-layout .workspace-footer .complete-button { min-height:44px; }
+  .tutorial-layout .schema-chip { min-height:42px; }
+  .tutorial-layout .example-load,.tutorial-layout .preview-table { min-height:44px; }
+  .tutorial-layout .result-table-scroll { -webkit-overflow-scrolling:touch; }
+}
+
+@media(max-width:560px) {
+  .tutorial-layout .topbar { display:grid; grid-template-columns:minmax(0,1fr) 112px; gap:8px 10px; min-height:0; padding:9px 12px; }
+  .tutorial-layout .top-brand { grid-column:1; grid-row:1; }
+  .tutorial-layout .top-actions { grid-column:2; grid-row:1; justify-self:end; }
+  .tutorial-layout .lesson-picker-wrap { grid-column:1; grid-row:2; width:100%; min-width:0; }
+  .tutorial-layout .lesson-picker { height:40px; padding:0 9px; font-size:12px; }
+  .tutorial-layout .top-progress { grid-column:2; grid-row:2; width:auto; min-width:0; padding:0; border:0; }
+  .tutorial-layout .top-progress-label { gap:4px; font-size:8px; }
+  .tutorial-layout .top-progress-label span { letter-spacing:.45px; }
+  .tutorial-layout .top-progress-track { margin-top:5px; }
+  .tutorial-layout .workspace { gap:20px; padding:18px 14px 22px; }
+  .tutorial-layout .lesson-heading { padding:8px 0 16px; }
+  .tutorial-layout .lesson-heading h1 { font-size:26px; line-height:1.2; }
+  .tutorial-layout .lesson-intro { font-size:15px; line-height:1.65; }
+  .tutorial-layout .lesson-body { padding:17px 0 10px; }
+  .tutorial-layout .lesson-body h2 { font-size:19px; }
+  .tutorial-layout .lesson-points > li { padding-left:36px; font-size:14px; }
+  .tutorial-layout .practice-column { gap:10px; }
+  .tutorial-layout .practice-section-heading h2 { font-size:19px; }
+  .tutorial-layout .schema-chip-heading { align-items:flex-start; }
+  .tutorial-layout .schema-chip-heading h2 { font-size:16px; }
+  .tutorial-layout .schema-chip-heading .schema-total { font-size:10px; }
+  .tutorial-layout .schema-chips { gap:6px; }
+  .tutorial-layout .schema-chip { min-height:40px; max-width:100%; padding:6px 9px; font-size:12px; }
+  .tutorial-layout .schema-detail { position:fixed; top:auto; right:12px; bottom:12px; left:12px; width:auto; max-width:none; max-height:min(68dvh,520px); padding:14px; }
+  .tutorial-layout .schema-detail .columns-list { grid-template-columns:minmax(0,1fr); }
+  .tutorial-layout .editor-panel { border-radius:9px; }
+  .tutorial-layout .panel-heading { padding:13px 13px 10px; }
+  .tutorial-layout .editor-toolbar { gap:5px; padding:0 9px; }
+  .tutorial-layout .editor-wrap { grid-template-columns:27px minmax(0,1fr); min-height:260px; }
+  .tutorial-layout .line-numbers { padding-right:6px; font-size:10px; }
+  .tutorial-layout .editor-wrap textarea { height:260px; min-height:260px; padding:11px 9px; font-size:12px; }
+  .tutorial-layout .editor-bottom { flex-wrap:wrap; padding:10px 12px; }
+  .tutorial-layout .editor-note { font-size:10px; }
+  .tutorial-layout .run-button { min-height:42px; padding:9px 11px; }
+  .tutorial-layout .results-heading { padding:13px 14px 10px; }
+  .tutorial-layout .results-content { max-height:320px; padding:0 10px 10px; }
+  .tutorial-layout .result-table-scroll { max-width:calc(100vw - 52px); }
+  .tutorial-layout .result-table th,.tutorial-layout .result-table td { padding:8px; }
+  .tutorial-layout .workspace-footer { gap:6px; }
+  .tutorial-layout .workspace-footer .prev-button,.tutorial-layout .workspace-footer .next-button { font-size:10px; }
+  .tutorial-layout .workspace-footer .complete-button { flex-basis:120px; min-height:44px; padding:8px; font-size:10px; white-space:normal; line-height:1.2; }
+  .tutorial-layout .join-query-anatomy { grid-template-columns:minmax(0,1fr); }
+}
