@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Vite binds to `127.0.0.1`. The generated production site is built with `npm run build` into `dist/`.
+Vite binds only to `127.0.0.1` (this computer). The generated production site is built with `npm run build` into `dist/`.
 
 ## Project structure
 

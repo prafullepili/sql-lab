@@ -10,19 +10,59 @@ import { useSqlDatabase } from './db/useSqlDatabase.js';
 import { resetQuery, saveQuery } from './features/query/querySlice.js';
 import { markTaskComplete, resetProgress, setCurrentLesson, toggleComplete } from './features/progress/progressSlice.js';
 
-function resultSignature(tablesOut) {
+function hasTopLevelOrderBy(sql = '') {
+  let depth = 0;
+  let quote = '';
+  let lineComment = false;
+  let blockComment = false;
+  let visibleSql = '';
+
+  for (let index = 0; index < sql.length; index += 1) {
+    const char = sql[index];
+    const next = sql[index + 1];
+
+    if (lineComment) {
+      if (char === '\n') lineComment = false;
+      visibleSql += ' ';
+      continue;
+    }
+    if (blockComment) {
+      if (char === '*' && next === '/') { blockComment = false; index += 1; }
+      visibleSql += ' ';
+      continue;
+    }
+    if (quote) {
+      if (char === quote && next === quote) { index += 1; }
+      else if (char === quote) quote = '';
+      visibleSql += ' ';
+      continue;
+    }
+    if (char === '-' && next === '-') { lineComment = true; index += 1; visibleSql += '  '; continue; }
+    if (char === '/' && next === '*') { blockComment = true; index += 1; visibleSql += '  '; continue; }
+    if (char === "'" || char === '"' || char === '`') { quote = char; visibleSql += ' '; continue; }
+    if (char === '(') { depth += 1; visibleSql += ' '; continue; }
+    if (char === ')') { depth = Math.max(0, depth - 1); visibleSql += ' '; continue; }
+    visibleSql += depth === 0 ? char : ' ';
+  }
+
+  return /\bORDER\s+BY\b/i.test(visibleSql);
+}
+
+function resultSignature(tablesOut, preserveOrder = false) {
   const table = [...tablesOut].reverse().find((item) => Array.isArray(item.columns) && Array.isArray(item.values));
   if (!table) return null;
   const normalize = (value) => typeof value === 'number' ? Math.round(value * 1e9) / 1e9 : value;
+  const rows = table.values.map((row) => JSON.stringify(row.map(normalize)));
+  if (!preserveOrder) rows.sort();
   return {
     columns: table.columns.map((column) => String(column).trim().toLowerCase()),
-    rows: table.values.map((row) => JSON.stringify(row.map(normalize))).sort(),
+    rows,
   };
 }
 
-function resultsMatch(actual, expected) {
-  const actualResult = resultSignature(actual);
-  const expectedResult = resultSignature(expected);
+function resultsMatch(actual, expected, preserveOrder) {
+  const actualResult = resultSignature(actual, preserveOrder);
+  const expectedResult = resultSignature(expected, preserveOrder);
   return Boolean(actualResult && expectedResult
     && JSON.stringify(actualResult.columns) === JSON.stringify(expectedResult.columns)
     && JSON.stringify(actualResult.rows) === JSON.stringify(expectedResult.rows));
@@ -89,7 +129,7 @@ export default function App() {
       if (tablesOut.length) {
         try {
           const expectedTables = await runSql(lesson.query);
-          taskPassed = resultsMatch(tablesOut, expectedTables);
+          taskPassed = resultsMatch(tablesOut, expectedTables, hasTopLevelOrderBy(lesson.query));
         } catch {
           taskPassed = false;
         }
