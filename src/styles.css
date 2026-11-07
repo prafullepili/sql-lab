@@ -72,13 +72,18 @@
 .editor-note { font-size:10px; color: #9aa79a; }
 .workspace { max-width: 1880px; grid-template-columns: minmax(300px, .98fr) minmax(440px, 1.25fr) minmax(290px, .92fr); gap: 22px; }
 .lesson-column,.editor-column,.utility-column { min-width: 0; }
+.tutorial-layout .lesson-column { position: sticky; top: 82px; height: calc(100vh - 100px); height: calc(100dvh - 100px); min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; padding: 12px 14px 18px 0; scrollbar-width: thin; scrollbar-color: #435246 transparent; }
+.tutorial-layout .lesson-column::-webkit-scrollbar { width: 8px; }
+.tutorial-layout .lesson-column::-webkit-scrollbar-track { background: transparent; }
+.tutorial-layout .lesson-column::-webkit-scrollbar-thumb { border: 2px solid transparent; border-radius: 8px; background: #435246; background-clip: padding-box; }
+.tutorial-layout .lesson-column::-webkit-scrollbar-thumb:hover { background-color: #64785e; }
 .function-item pre { scrollbar-width: thin; scrollbar-color: #435246 transparent; }
 .error-box { margin: 14px; padding: 12px; border: 1px solid #68443c; border-radius: 7px; background: #2b201c; color: #ffab9d; font:11px/1.65 "DM Mono",monospace; overflow-wrap: anywhere; }
 .success-note { padding: 18px; color: #c3f26b; font-size:12px; }
 .live-dot.starting { background: #e8af68; box-shadow: 0 0 9px #e8af686b; }
 .run-button:disabled { opacity: .6; cursor: wait; }
 @media(max-width: 1250px) { .workspace { grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr); } .lesson-heading { padding: 18px; } .top-progress { width: 135px; } }
-@media(max-width: 850px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+@media(max-width: 850px) { .workspace { grid-template-columns: minmax(0, 1fr); } .tutorial-layout .lesson-column { position: static; height: auto; min-height: 0; overflow: visible; padding: 0; } }
 @media(max-width: 560px) { .join-basics { padding: 13px; } .join-map { grid-template-columns: minmax(0,1fr); gap: 8px; } .join-link { grid-template-columns: auto minmax(30px,1fr); justify-items: start; align-items: center; gap: 7px; } .join-cardinality { white-space: nowrap; } .join-link-line { width: 100%; } .join-link code { grid-column: 1 / -1; text-align: left; } .join-query-anatomy { grid-template-columns: minmax(0,1fr); } }
 
 /* SQLBolt-inspired lesson-first flow in the app's dark theme. */
