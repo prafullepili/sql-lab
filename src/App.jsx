@@ -136,18 +136,24 @@ export default function App() {
         <section className="lesson-column min-w-0" aria-live="polite">
           <LessonContent lesson={lesson} onLoad={loadExample} taskPassed={tasksCompleted.includes(current)} />
         </section>
-        <section className="database-column min-w-0" aria-label="Sample database tables">
-          <SchemaPanel tables={Object.keys(liveTables).length ? liveTables : starterTables} onLoad={loadExample} />
+        <section className="practice-column min-w-0" aria-label="SQL practice workspace">
+          <div className="practice-section-heading">
+            <span className="lesson-step-label">02 · PRACTICE</span>
+            <h2>Try it yourself</h2>
+          </div>
+          <div className="database-column min-w-0" aria-label="Sample database tables">
+            <SchemaPanel tables={Object.keys(liveTables).length ? liveTables : starterTables} onLoad={loadExample} />
+          </div>
+          <section className="editor-column min-w-0" aria-label="SQL query editor">
+            <QueryEditor lesson={lesson} query={query} ready={ready}
+              onChange={(sql) => dispatch(saveQuery({ lesson: lesson.title, sql }))}
+              onRun={executeQuery}
+              onReset={(sql) => { dispatch(resetQuery(lesson.title)); if (sql !== (lesson.starterQuery ?? lesson.example)) dispatch(saveQuery({ lesson: lesson.title, sql })); setToast('Worked example restored'); }} />
+          </section>
+          <aside className="results-column min-w-0" aria-label="Query output">
+            <ResultsPanel result={result} title={resultTitle} count={resultCount} />
+          </aside>
         </section>
-        <section className="editor-column min-w-0" aria-label="SQL query editor">
-          <QueryEditor lesson={lesson} query={query} ready={ready}
-            onChange={(sql) => dispatch(saveQuery({ lesson: lesson.title, sql }))}
-            onRun={executeQuery}
-            onReset={(sql) => { dispatch(resetQuery(lesson.title)); if (sql !== (lesson.starterQuery ?? lesson.example)) dispatch(saveQuery({ lesson: lesson.title, sql })); setToast('Worked example restored'); }} />
-        </section>
-        <aside className="results-column min-w-0" aria-label="Query output">
-          <ResultsPanel result={result} title={resultTitle} count={resultCount} />
-        </aside>
         <div className="lesson-footer workspace-footer">
           <button className="prev-button" disabled={current === 0} onClick={() => showLesson(current - 1)}>← Previous</button>
           <button className={'complete-button' + (completed.includes(current) ? ' completed' : '')} onClick={() => dispatch(toggleComplete(current))}>
